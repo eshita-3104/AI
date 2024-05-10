@@ -25,12 +25,12 @@ class Tree:
                 print("\t", self.a[i][j], end="")
         print()
 
-    def minimum(self):
+    def minimum(self, start_vertex):
         total = 0
         for i in range(self.v):
             self.visited[i] = 0
 
-        self.visited[0] = 1
+        self.visited[start_vertex-1] = 1
         for count in range(self.v - 1):
             min_edge = 999
             for i in range(self.v):
@@ -41,7 +41,6 @@ class Tree:
                                 min_edge = self.a[i][j]
                                 p = i
                                 q = j
-            self.visited[p] = 1
             self.visited[q] = 1
             total += min_edge
             print("Minimum cost connection is {} -> {}  with charge: {}".format(p + 1, q + 1, min_edge))
@@ -64,7 +63,8 @@ def main():
             t.display()
         elif ch == 3:
             print("*********MINIMUM************")
-            t.minimum()
+            start_vertex = int(input("Enter the start vertex: "))
+            t.minimum(start_vertex)
         elif ch == 4:
             break
         else:
